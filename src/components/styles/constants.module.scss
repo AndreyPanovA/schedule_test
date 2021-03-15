@@ -10,3 +10,6 @@ $accent: #E8550C;
 $RoseBud: #F5A691;
 $white: #fff;
 $lemon: #f9ca24;
+$gr: linear-gradient(120deg, $abbey 0%, $dark 100%);
+$gr2: linear-gradient(120deg, $accent 0%, lighten($accent, 10) 100%);
+$gr3: linear-gradient(45deg, $brightRed 0%, $lemon 100%);

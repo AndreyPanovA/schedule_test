@@ -2,6 +2,7 @@
 import React, { Component } from "react"
 import Switch from "../switch"
 import cls from "./style.module.scss"
+import TimeSelectElement from "../time-select-element"
 
 class Accordion extends Component {
     constructor(props) {
@@ -62,7 +63,13 @@ class Accordion extends Component {
             >
               <div className={i.open ? cls["content-text"] +" "+cls["content-text-open"] 
                 : cls["content-text"]}
-              > {i.content}
+              > 
+              
+              {i.content.map((el,idx)=><TimeSelectElement title={el.title} />)}
+
+              {/* {i.content.map(({title})=> <TimeSelectElement title={title} />)} */}
+             
+              
               </div>
             </div>
           </div>

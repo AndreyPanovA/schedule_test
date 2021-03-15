@@ -13,7 +13,6 @@
    box-shadow: 5px 5px 35px $dark;
    padding: 10px 20px;
    display: flex;
-
    flex-direction: column;
 //    overflow: hidden;
 //    box-shadow:  7px 7px 14px #333,
@@ -28,7 +27,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     background-color: rgba(0,0,0, .3);
     border-bottom: 1px solid darken($g2, 30);
     color: #ffddcc;
@@ -43,6 +41,16 @@
     border-radius: 10px;
     margin-top: 2px;
     transition: all .2s ease-in;
+    min-width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    box-shadow: -3px -3px 20px darken($gray, 6), 5px 5px 20px $black;
+    // border-color: $accent;
+    border-style: solid;
+	  border-color: lighten($dark, 10);
+    border-radius: 20px;
+    background-image: $g2;
+    color: $white;
   }
   
   .title-text {
@@ -51,11 +59,11 @@
   
   .title:hover {
     cursor: pointer;
-    background-color: rgba(0,0,0, .5);
+    background-color: $accent;
   }
   
   .title:active {
-    background-color: rgba(0, 0, 0, .55);
+    background-color: $accent;
   }
   
   .content {
@@ -75,8 +83,8 @@
   
   .content-open {
     margin-top: 0px;
-    height: 200px;
-    background-color: rgba(0,0,0, .1);
+    height: 250px;
+
     transition: all 350ms cubic-bezier(0.080, 1.090, 0.320, 1.275);
   }
   
