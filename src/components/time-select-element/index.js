@@ -2,10 +2,10 @@ import React from "react"
 import TimePicker from 'react-time-picker'
 import Btn from "../btn";
 import cls from "./style.module.scss"
-const TimeSelectElement=(props)=> {
+const TimeSelectElement=({title})=> {
     return (
         <div className={cls.container}>
-            <Btn />
+            <Btn title={title} />
         </div>
       
     )

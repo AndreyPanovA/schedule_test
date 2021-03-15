@@ -65,7 +65,10 @@ class Accordion extends Component {
                 : cls["content-text"]}
               > 
               
-              {i.content.map((el,idx)=><TimeSelectElement title={el.title} />)}
+              {i.content.map((el,idx)=>{
+                console.log("hire", el.title)
+                return <TimeSelectElement title={el.title} />
+              })}
 
               {/* {i.content.map(({title})=> <TimeSelectElement title={title} />)} */}
              
