@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+ background: rgba(51,56,61,1); 
+}
+body {
+  width: 100vw;
+  font-family: 'quicksand';
+  padding: 50px;
+  font-weight: lighter;
+  background: linear-gradient(-45deg, rgba(51,56,61,1), rgba(27,28,31,1));
+  min-height: 100vh;
+
+}
