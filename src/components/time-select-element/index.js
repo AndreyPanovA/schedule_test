@@ -1,19 +1,72 @@
 import React,{ useState } from "react"
-import TimePicker from 'react-time-picker'
-// import {Timepicker} from 'react-timepicker';
-// import 'react-timepicker/timepicker.css'
+import Icon,{PlusCircleOutlined,CloseCircleOutlined} from '@ant-design/icons';
 import Btn from "../btn";
 import cls from "./style.module.scss"
-const TimeSelectElement=({title})=> {
-    const [value, onChange] = useState('10:00');
+import TimePickerComponent from "../time-picker"
+import {v4} from 'uuid';
+const TimeSelectElement=({title,onAddItem, state, setState, vm, idx, dayId})=> {
+    const [timeCount, setTimeCount]=useState({[v4()]:{
+        time:""
+    }})
+    const callbacks={
+        onAddItem:(id)=> {
+            setTimeCount((prev)=>{
+                const newArr = {...prev, [id]:{time:""}}
+                return newArr
+            })
+         
+        },
+        onDelItem:(id)=> {
+            setTimeCount((prev)=>{
+                const obj={...prev}
+                if (obj[id]) {
+                    delete obj[id]
+                }
+                return obj
+            })
+        }
+    }
+
     return (
         <div className={cls.container}>
             <Btn title={title} />
-            {/* <TimePicker
-        onChange={onChange}
-        value={value}
-      /> */}
-    
+            <div className={cls.addItem}>
+                <div>
+                    {Object.keys(timeCount).map((id, index)=> {    
+                        return (
+                        <div className={cls.timeItem} key={id}>
+                            <TimePickerComponent {...{state, setState}} onChange={(time)=>{
+                                setTimeCount((prev)=> {
+                                    const newArr = {...prev}
+                                    newArr[id]={time}
+                                    return newArr
+                                })
+                             
+                                vm.setState(prev=> {
+                                    // const obj={...prev, [dayId]:{
+                                    //     id:idx,
+                                    //     time:{
+                                    //         [id]:{time}
+                                    //     }
+                                    // }}
+                                   
+                                    const obj={...prev, accordionItems:[{...prev.accordionItems[0], [idx]:{time:{
+                                        ...prev.accordionItems[0]?.[idx]?.time,
+                                        [id]:{time}
+                                    }} }]}
+                                    return obj
+                                })
+                            }} />
+                              <div className={cls.plus} onClick={callbacks.onDelItem.bind(this, id)}>
+                                <CloseCircleOutlined />
+                             </div>
+                        </div>
+                    )})} 
+                </div>
+                <div className={cls.plus} onClick={callbacks.onAddItem.bind(this, v4())}>
+                    <PlusCircleOutlined/>
+                </div>
+            </div>
         </div>
       
     )

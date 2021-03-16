@@ -3,13 +3,17 @@ import cls from "./style.module.scss"
 import { useState } from "react"
 import {v4} from 'uuid';
 
-const Btn = ({title="Сохранить результаты", onClick})=> {
+const Btn = ({title="Сохранить результаты", onPress})=> {
     const [press, setPress]=useState(false)
     const id=v4()
     const callbacks={
         onClick:()=> {
+
             setPress(prev=>!prev)
             // onClick
+            if(onPress) {
+                onPress()
+            }
             // onClick()
         }
     }

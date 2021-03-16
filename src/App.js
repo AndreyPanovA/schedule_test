@@ -1,23 +1,20 @@
+
+import React, {useState} from "react"
 import './App.scss';
-import {Accordion,Btn} from "./components"
+import {Accordion,Btn,TimePickerComponent} from "./components"
 
 
 function App() {
-  let data = [
-    {
-      title: "Понедельник", 
-      content: `Lorem ipsum dolor sit amet, `
-    },
-  ];
-  const places=[{title:"В москве"},{title:"Студия на Академической"},{title:"Перерыв"}]
-  const weekArr=[{title:"Понедельник", content:places}, {title:"Вторник",content:places},{title:"Среда",content:places},{title:"Четверг",content:places},{title:"Пятница",content:places},{title:"Суббота",content:places},{title:"Воскресенье",content:places}]
+  const [state, setState]=useState({})
+  const places=[{id:1, title:"В москве"},{id:2,title:"Студия на Академической"},{id:3,title:"Перерыв"}]
+  const weekArr=[{id:10, title:"Понедельник", content:places}, {id:20,title:"Вторник",content:places},{id:30,title:"Среда",content:places},{id:40,title:"Четверг",content:places},{id:50,title:"Пятница",content:places},{id:60,title:"Суббота",content:places},{id:70,title:"Воскресенье",content:places}]
 	return (
-   
         <>
-        {weekArr.map((el,idx)=> <Accordion data={[el]} idx={idx} />)}
-          <Btn />
+          {weekArr.map((el,idx)=> {
+            return <Accordion data={[el]} idx={el.id}  state={state} setState={setState} />
+          })}
+          <Btn onPress={()=>alert("results")}/>
         </>
- 
   );
 }
 

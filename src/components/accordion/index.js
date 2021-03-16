@@ -1,6 +1,6 @@
 
 import React, { Component } from "react"
-import Switch from "../switch"
+import Switcher from "../switch"
 import cls from "./style.module.scss"
 import TimeSelectElement from "../time-select-element"
 
@@ -16,6 +16,7 @@ class Accordion extends Component {
       
         this.props.data.forEach((i) => {
         accordion.push({
+          id:i.id,
           title: i.title, 
           content: i.content, 
           open: false
@@ -23,8 +24,8 @@ class Accordion extends Component {
       });
       
           this.setState({
-        accordionItems: accordion
-      });
+            accordionItems: accordion
+        });
     }
     click=(i)=> {
         const newAccordion = this.state.accordionItems.slice();
@@ -34,9 +35,13 @@ class Accordion extends Component {
         this.setState({accordionItems: newAccordion});
     }
     render () {
-    
+      // console.log(this.state)
         const sections = this.state.accordionItems.map((i) => (
           <div key={this.state.accordionItems.indexOf(i)}>
+              <Switcher 
+              // id={this.props.idx} 
+              id={i.id}
+              vm={this}/>
             <div 
               className={cls.title} 
               onClick={this.click.bind(null, i)}
@@ -51,28 +56,20 @@ class Accordion extends Component {
              <span className={cls["title-text"]}>
                {i.title}
              </span>
-         
-              <Switch id={this.props.idx}/>
-   
+              {/* <Switcher 
+              // id={this.props.idx} 
+              id={i.id}
+              vm={this}/> */}
            </div>
            <div 
-          //  className={i.open ? cls["content"] +" "+ cls["content-open"] : cls["content-text"]}
            className={i.open 
              ? cls["content"] +" "+ cls["content-open"] 
-             : cls["content"]}
-            >
+             : cls["content"]}>
               <div className={i.open ? cls["content-text"] +" "+cls["content-text-open"] 
-                : cls["content-text"]}
-              > 
-              
-              {i.content.map((el,idx)=>{
-                console.log("hire", el.title)
-                return <TimeSelectElement title={el.title} />
-              })}
-
-              {/* {i.content.map(({title})=> <TimeSelectElement title={title} />)} */}
-             
-              
+                : cls["content-text"]}> 
+                {i.content.map((el,idx)=>{
+                  return <TimeSelectElement title={el.title} onAddItem={()=>alert("clicked")} vm={this} dayId={i.id}  idx={el.id}/>
+                })}
               </div>
             </div>
           </div>
