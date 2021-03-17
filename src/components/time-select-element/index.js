@@ -47,6 +47,7 @@ const TimeSelectElement=({title,onAddItem, state, setState, vm, idx, dayId})=> {
                                         ...prev.accordionItems[0]?.[idx]?.time,
                                         [id]:{time}
                                     }} }]}
+                                   
                                     return obj
                                 })
                             }} />

@@ -3,6 +3,7 @@ import React, { Component } from "react"
 import Switcher from "../switch"
 import cls from "./style.module.scss"
 import TimeSelectElement from "../time-select-element"
+import {servisesArr} from "../../data"
 
 class Accordion extends Component {
     constructor(props) {
@@ -15,16 +16,18 @@ class Accordion extends Component {
         let accordion = [];
       
         this.props.data.forEach((i) => {
-        accordion.push({
+      
+         accordion.push({
           id:i.id,
           title: i.title, 
-          content: i.content, 
+          // content: i.content, 
           open: false
         });
       });
       
           this.setState({
-            accordionItems: accordion
+            accordionItems: accordion,
+            servisesArr
         });
     }
     click=(i)=> {
@@ -36,6 +39,7 @@ class Accordion extends Component {
     }
     render () {
       // console.log(this.state)
+      
         const sections = this.state.accordionItems.map((i) => (
           <div key={this.state.accordionItems.indexOf(i)}>
               <Switcher 
@@ -67,7 +71,10 @@ class Accordion extends Component {
              : cls["content"]}>
               <div className={i.open ? cls["content-text"] +" "+cls["content-text-open"] 
                 : cls["content-text"]}> 
-                {i.content.map((el,idx)=>{
+                {/* {i.content.map((el,idx)=>{
+                  return <TimeSelectElement title={el.title} onAddItem={()=>alert("clicked")} vm={this} dayId={i.id}  idx={el.id}/>
+                })} */}
+                 {servisesArr.map((el,idx)=>{
                   return <TimeSelectElement title={el.title} onAddItem={()=>alert("clicked")} vm={this} dayId={i.id}  idx={el.id}/>
                 })}
               </div>

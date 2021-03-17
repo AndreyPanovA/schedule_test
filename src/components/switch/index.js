@@ -10,10 +10,12 @@ const Switcher = ({id="switch-shadow", checked, vm})=> {
         })
         vm.props.setState(prev=> {
             const obj={...prev,[id]:vm.state}
-
             let newObj={...prev,[id]:vm.state.accordionItems[0]}
             
-
+            // delete newObj[id].content
+        //  if(newObj[id].content) {
+        //      delete newObj[id].content
+        //  }
             // Object.keys(vm.state.accordionItems[0]).forEach(el=>{
             //     console.log("el:", el)
             //     // if(el==1) {
