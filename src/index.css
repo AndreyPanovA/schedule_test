@@ -8,7 +8,8 @@ html {
 }
 body {
   width: 100vw;
-  font-family: 'quicksand';
+  /* font-family: 'quicksand'; */
+  font-family: 'Ubuntu', sans-serif;
   padding: 50px;
   font-weight: lighter;
   background: rgba(51,56,61,1) !important; 
