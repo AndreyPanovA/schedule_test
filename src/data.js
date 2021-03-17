@@ -1,1 +1,2 @@
 export const servisesArr =[{id:1, title:"В москве"},{id:2,title:"Студия на Академической"},{id:3,title:"Перерыв"}]
+export const weekArr=[{id:10, title:"Понедельник"}, {id:20,title:"Вторник"},{id:30,title:"Среда"},{id:40,title:"Четверг"},{id:50,title:"Пятница"},{id:60,title:"Суббота"},{id:70,title:"Воскресенье"}]

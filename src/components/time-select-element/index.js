@@ -29,19 +29,19 @@ const TimeSelectElement=({title,onAddItem, state, setState, vm, idx, dayId})=> {
 
     return (
         <div className={cls.container}>
-            <Btn title={title} onPress={()=>console.log("ttt")} vm={vm} idx={idx}/>
+            <Btn title={title} onPress={()=>console.log("ttt")} vm={vm} idx={idx} dayId={dayId}/>
             <div className={cls.addItem}>
                 <div>
                     {Object.keys(timeCount).map((id, index)=> {    
                         return (
                         <div className={cls.timeItem} key={id}>
-                            <TimePickerComponent {...{state, setState}} onChange={(time)=>{
+                            <TimePickerComponent {...{state, setState}} onChange={async (time)=>{
                                 setTimeCount((prev)=> {
                                     const newArr = {...prev}
                                     newArr[id]={time}
                                     return newArr
                                 })
-                                vm.setState(prev=> {
+                                await vm.setState(prev=> {
                                     const obj={...prev, accordionItems:[{...prev.accordionItems[0], [idx]:{
                                         time:{
                                         ...prev.accordionItems[0]?.[idx]?.time,
@@ -50,6 +50,20 @@ const TimeSelectElement=({title,onAddItem, state, setState, vm, idx, dayId})=> {
                                    
                                     return obj
                                 })
+                                // vm.props.setState(prev=> {
+                                //     let newObj={...prev,[dayId]:vm.state.accordionItems[0]}
+                                //     if (!vm.state.accordionItems[0]?.[idx]?.isSelected) {
+                                //         const sepObj={}
+                                //         for (let i in vm.state.accordionItems[0]) {
+                                //             if (vm.state.accordionItems[0][i]) {
+                                //                 sepObj[i]=vm.state.accordionItems[0][i]
+                                //             }
+                                //         }
+                                //         return sepObj
+                                //         // return {...newObj, [dayId]:{...vm.state.accordionItems[0],[idx]:false}}
+                                //     }
+                                //     return newObj
+                                // })
                             }} />
                               <div className={cls.plus} onClick={callbacks.onDelItem.bind(this, id)}>
                                 <CloseCircleOutlined />
