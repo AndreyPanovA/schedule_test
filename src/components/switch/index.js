@@ -6,6 +6,7 @@ const Switcher = ({id="switch-shadow", checked, vm})=> {
     function onChange(checked) {
         console.log(`switch to ${checked}`);
         console.log(JSON.stringify(vm.state, null, 2))
+   
         
       }
     return (

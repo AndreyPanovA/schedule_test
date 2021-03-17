@@ -29,7 +29,7 @@ const TimeSelectElement=({title,onAddItem, state, setState, vm, idx, dayId})=> {
 
     return (
         <div className={cls.container}>
-            <Btn title={title} />
+            <Btn title={title} onPress={()=>console.log("ttt")} vm={vm} idx={idx}/>
             <div className={cls.addItem}>
                 <div>
                     {Object.keys(timeCount).map((id, index)=> {    
@@ -41,16 +41,9 @@ const TimeSelectElement=({title,onAddItem, state, setState, vm, idx, dayId})=> {
                                     newArr[id]={time}
                                     return newArr
                                 })
-                             
                                 vm.setState(prev=> {
-                                    // const obj={...prev, [dayId]:{
-                                    //     id:idx,
-                                    //     time:{
-                                    //         [id]:{time}
-                                    //     }
-                                    // }}
-                                   
-                                    const obj={...prev, accordionItems:[{...prev.accordionItems[0], [idx]:{time:{
+                                    const obj={...prev, accordionItems:[{...prev.accordionItems[0], [idx]:{
+                                        time:{
                                         ...prev.accordionItems[0]?.[idx]?.time,
                                         [id]:{time}
                                     }} }]}
