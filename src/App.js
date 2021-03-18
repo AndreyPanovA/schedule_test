@@ -21,12 +21,14 @@ function App() {
           {weekArr.map((el,idx)=> {
             return <Accordion data={[el]} idx={el.id}  state={state} setState={setState} />
           })}
-        
+        <a href="/images" download>
+        <pre style={{color:"white", textAlign:"justify"}}>{JSON.stringify(state, null, 2)}</pre>
+      </a>
           <div className="save-btn-container">
-            <SaveResultsBtn onClick={callbacks.onSaveResults} />
+            <SaveResultsBtn onClick={callbacks.onSaveResults} title="Показать JSON" />
           </div>
           {showJSON &&  <div style={{margin:"auto"}}>
-            <div style={{borderLeft:"2px solid lime", padding:"20px"}}>
+            <div style={{borderLeft:"5px solid #1eff45", padding:"20px"}}>
               <pre style={{color:"white", textAlign:"justify"}}>{JSON.stringify(state, null, 2)}</pre>
             </div>
           </div>}

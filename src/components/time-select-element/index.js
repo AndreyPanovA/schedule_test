@@ -81,8 +81,7 @@ const TimeSelectElement=({title,onAddItem, state, setState, vm, idx, dayId})=> {
                     <PlusCircleOutlined/>
                 </div>
             </div>
-        </div>
-      
+        </div>  
     )
 }
 export default TimeSelectElement
