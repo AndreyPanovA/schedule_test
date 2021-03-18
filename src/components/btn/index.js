@@ -35,11 +35,38 @@ const Btn = ({title="Сохранить результаты", onPress, vm,idx,d
             //     return {...prev}
             // })
             vm.props.setState(prev=> {
-                let newObj={...prev,[dayId]:vm.state.accordionItems[0]}
-                if (!vm.state.accordionItems[0]?.[idx]?.isSelected) {
-                    return {...newObj, [dayId]:{...vm.state.accordionItems[0],[idx]:false}}
+                let newObj={...prev, [dayId]:vm.state.accordionItems[0]}
+                let renderObj={...newObj, [dayId]:{...vm.state.accordionItems[0]}}
+                for (let key in vm.state.accordionItems[0]) {
+                    // console.log("vm.state.accordionItems[0][key]",vm.state.accordionItems[0][key])
+                    for (let innerKey in vm.state.accordionItems[0][key]) {
+                     
+                        if (innerKey=="isSelected" && vm.state.accordionItems[0][key][innerKey]) {
+                           
+                            renderObj={...renderObj,[dayId]:{...renderObj[dayId],[key]:vm.state.accordionItems[0][key]}}
+                           
+                            // renderObj[dayId]={...renderObj[dayId],[key]:vm.state.accordionItems[0][key]}   
+                           
+                        }
+                        else {
+                        // (key=="isSelected" && !vm.state.accordionItems[0][key][innerKey]) {
+                        // renderObj[dayId]={...renderObj[dayId],[key]:false}
+                        // console.log("fucker",renderObj)
+                        console.log("render", renderObj)
+                        renderObj={...renderObj,[dayId]:{...renderObj[dayId],[key]:false}}
+                    }
+                    }
+                  
+                    // else if(key=="isSelected" && !vm.state.accordionItems[0][key]) {
+                    //     renderObj[dayId]={...renderObj[dayId],[key]:false}
+                    // }
                 }
-                return newObj
+                // if (!vm.state.accordionItems[0]?.[idx]?.isSelected) {
+                    
+                //     return {...newObj, [dayId]:{...vm.state.accordionItems[0],[idx]:false}}
+                // }
+                return renderObj
+                // return newObj
             })
             if(onPress) {
                 onPress()
@@ -48,7 +75,7 @@ const Btn = ({title="Сохранить результаты", onPress, vm,idx,d
     }
     return (
         <label for={id} className={cls["btn-label"]}>
-            <button id={id} className={  press ? cls["btn-container"]+ " "+cls["active"]: cls["btn-container"]} onClick={callbacks.onClick}>
+            <button id={id} className={  vm.state.accordionItems[0][idx]?.isSelected ? cls["btn-container"]+ " "+cls["active"]: cls["btn-container"]} onClick={callbacks.onClick}>
             
             </button>
            <p>{title}</p>
