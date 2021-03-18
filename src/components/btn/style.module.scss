@@ -2,6 +2,14 @@
 .btn-label {
     display: flex;
     align-items: center;
+ 
+ 
+
+       p {
+          
+            color:white;
+           
+        }
     .btn-container {
         cursor: pointer;
         border-radius: 50px;
@@ -22,9 +30,8 @@
         background-color: $black;
         background-image: $gr;
         color: $white;
-        p {
-            color:white;
-        }
+        margin-right: 10px;
+     
         &:active, &.active {
             box-shadow: inset 10px 10px 20px rgba($brightRed, .5), -3px -3px 20px darken($gray, 6), 5px 5px 20px $black;
             font-size: .8rem;
@@ -44,3 +51,12 @@
     }
 
 }
+
+@media screen  and (max-width: 550px) /* Tablet */ {
+    .btn-container {
+        width: 25px !important;
+        height: 25px !important;
+    }
+   
+}
+  

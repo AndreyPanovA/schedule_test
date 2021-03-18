@@ -8,7 +8,8 @@
     box-shadow: 5px 5px 35px $dark;
     padding: 10px 20px;
     display: flex;
-    flex-direction: column;    
+    flex-direction: column;  
+     
 }
 .title {
     width: 100%;
@@ -105,4 +106,16 @@
 
   .btn {
     box-shadow: -3px -3px 15px $gray, 3px 3px 15px $black
+  }
+ 
+
+  @media screen  and (max-width: 950px) /* Tablet */ {
+    .accordion {
+      width: 80vw !important;
+    }
+  }
+  @media screen  and (max-width: 650px) /* Tablet */ {
+    .accordion {
+      width: 95vw !important;
+    }
   }
