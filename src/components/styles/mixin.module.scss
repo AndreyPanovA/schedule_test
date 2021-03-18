@@ -1,0 +1,5 @@
+
+@mixin neumorphism($distance, $blur, $intensity, $inset: false) {
+  box-shadow: $distance $distance $blur mix(#5a5a5a, transparent, $intensity) if($inset, inset, null),
+    -#{$distance} -#{$distance} $blur mix(#ffffff, transparent, $intensity) if($inset, inset, null);
+}
