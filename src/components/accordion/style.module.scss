@@ -1,29 +1,16 @@
 @import "../styles/constants.module.scss";
 .accordion {
     border-radius: 20px;
-    // background: linear-gradient(145deg, rgba(51,56,61,1),rgba(0,0,0, .1), rgba(0,0,0, .4));
-    // box-shadow:  7px 7px 14px #333,
-    //          -7px -7px 14px #ffffff;
-                // -webkit-box-shadow: 0px 13px 23px -13px rgba(0,0,0,0.5);
-   width: 50vw;
-   margin: auto;
-    // width: 100%;
-   margin-top: 50px;
-   border: 1px solid darken($g2, 30);
-   box-shadow: 5px 5px 35px $dark;
-   padding: 10px 20px;
-   display: flex;
-   flex-direction: column;
-
-//    overflow: hidden;
-//    box-shadow:  7px 7px 14px #333,
-//    -7px -7px 14px #ffffff;
-      
+    width: 50vw;
+    margin: auto;
+    margin-top: 50px;
+    border: 1px solid darken($g2, 30);
+    box-shadow: 5px 5px 35px $dark;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;    
 }
-
-
 .title {
-    // height: 40px;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -46,7 +33,6 @@
     height: 50px;
     border-radius: 15px;
     box-shadow: -3px -3px 20px darken($gray, 6), 5px 5px 20px $black;
-    // border-color: $accent;
     border-style: solid;
 	  border-color: lighten($dark, 10);
     border-radius: 20px;

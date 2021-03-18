@@ -16,11 +16,9 @@ class Accordion extends Component {
         let accordion = [];
       
         this.props.data.forEach((i) => {
-      
          accordion.push({
           id:i.id,
           title: i.title, 
-          // content: i.content, 
           open: false
         });
       });
@@ -38,19 +36,15 @@ class Accordion extends Component {
         this.setState({accordionItems: newAccordion});
     }
     render () {
-      // console.log(this.state)
-      
         const sections = this.state.accordionItems.map((i) => (
           <div key={this.state.accordionItems.indexOf(i)}>
               <Switcher 
-              // id={this.props.idx} 
               id={i.id}
               vm={this}/>
             <div 
               className={cls.title} 
               onClick={this.click.bind(null, i)}
             >
-           
              <div className={cls["arrow-wrapper"]}>
                <i className={i.open 
                  ? "fa fa-angle-down fa-rotate-180" 
@@ -60,10 +54,6 @@ class Accordion extends Component {
              <span className={cls["title-text"]}>
                {i.title}
              </span>
-              {/* <Switcher 
-              // id={this.props.idx} 
-              id={i.id}
-              vm={this}/> */}
            </div>
            <div 
            className={i.open 
@@ -71,9 +61,6 @@ class Accordion extends Component {
              : cls["content"]}>
               <div className={i.open ? cls["content-text"] +" "+cls["content-text-open"] 
                 : cls["content-text"]}> 
-                {/* {i.content.map((el,idx)=>{
-                  return <TimeSelectElement title={el.title} onAddItem={()=>alert("clicked")} vm={this} dayId={i.id}  idx={el.id}/>
-                })} */}
                  {servisesArr.map((el,idx)=>{
                   return <TimeSelectElement title={el.title} onAddItem={()=>alert("clicked")} vm={this} dayId={i.id}  idx={el.id}/>
                 })}

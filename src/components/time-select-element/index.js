@@ -29,7 +29,6 @@ const TimeSelectElement=({title,onAddItem, state, setState, vm, idx, dayId})=> {
                 delete newObj[dayId][idx]["time"][id]
                 return newObj
             })
-            // console.log("sss", id, idx, "ddd", vm.state.accordionItems[0])
         }
     }
 
