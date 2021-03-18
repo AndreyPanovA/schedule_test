@@ -1,37 +1,49 @@
 
-import React, {useState} from "react"
+import React, {useState, useRef, useEffect} from "react"
 import './App.scss';
-import {Accordion,Btn,TimePickerComponent,SaveResultsBtn} from "./components"
+import {Accordion,Btn,TimePickerComponent,SaveResultsBtn, PDF} from "./components"
 import {weekArr} from "./data"
-import {CUSTOM} from "../src/constants"
+import jsPDF from 'jspdf';
+
+
 
 function App() {
   const [state, setState]=useState({})
   const [showJSON, setShowJSON]=useState(false)
+  const doc = new jsPDF();
+  let ref = useRef()
   const callbacks={
     onSaveResults:()=>{
       setShowJSON(true)
       setState((prev)=> {
         return {...prev}
       })
+    },
+    onLoadPDF:()=>{
+      doc.text(JSON.stringify(state, null, 2), 10, 10)
+      doc.save("JSON.pdf");
+     
     }
   }
+  
 	return (
         <>
           {weekArr.map((el,idx)=> {
             return <Accordion data={[el]} idx={el.id}  state={state} setState={setState} />
           })}
-        <a href="/images" download>
-        <pre style={{color:"white", textAlign:"justify"}}>{JSON.stringify(state, null, 2)}</pre>
-      </a>
           <div className="save-btn-container">
             <SaveResultsBtn onClick={callbacks.onSaveResults} title="Показать JSON" />
           </div>
-          {showJSON &&  <div style={{margin:"auto"}}>
-            <div style={{borderLeft:"5px solid #1eff45", padding:"20px"}}>
+          {showJSON && <>
+          <div style={{margin:"auto"}} >
+            <div style={{borderLeft:"5px solid #1eff45", padding:"20px", background:"#333"}} ref={ref}>
               <pre style={{color:"white", textAlign:"justify"}}>{JSON.stringify(state, null, 2)}</pre>
             </div>
-          </div>}
+          </div>
+          <div className="save-btn-container">
+            <SaveResultsBtn onClick={callbacks.onLoadPDF} title="Сохранить Pdf" />
+          </div>
+          </>}
         </>
   );
 }
