@@ -35,14 +35,15 @@ function App() {
             <SaveResultsBtn onClick={callbacks.onSaveResults} title="Показать JSON" />
           </div>
           {showJSON && <>
+            <div className="save-btn-container">
+            <SaveResultsBtn onClick={callbacks.onLoadPDF} title="Сохранить Pdf" />
+          </div>
           <div style={{margin:"auto"}} >
             <div style={{borderLeft:"5px solid #1eff45", padding:"20px", background:"#333"}} ref={ref}>
               <pre style={{color:"white", textAlign:"justify"}}>{JSON.stringify(state, null, 2)}</pre>
             </div>
           </div>
-          <div className="save-btn-container">
-            <SaveResultsBtn onClick={callbacks.onLoadPDF} title="Сохранить Pdf" />
-          </div>
+       
           </>}
         </>
   );
