@@ -16,14 +16,20 @@ const TimeSelectElement=({title,onAddItem, state, setState, vm, idx, dayId})=> {
             })
          
         },
-        onDelItem:(id)=> {
-            setTimeCount((prev)=>{
+        onDelItem:async (id)=> {
+            await setTimeCount((prev)=>{
                 const obj={...prev}
                 if (obj[id]) {
                     delete obj[id]
                 }
                 return obj
             })
+            vm.props.setState(prev=> {
+                let newObj={...prev, [dayId]:vm.state.accordionItems[0]}
+                delete newObj[dayId][idx]["time"][id]
+                return newObj
+            })
+            // console.log("sss", id, idx, "ddd", vm.state.accordionItems[0])
         }
     }
 
@@ -50,20 +56,21 @@ const TimeSelectElement=({title,onAddItem, state, setState, vm, idx, dayId})=> {
                                    
                                     return obj
                                 })
-                                // vm.props.setState(prev=> {
-                                //     let newObj={...prev,[dayId]:vm.state.accordionItems[0]}
-                                //     if (!vm.state.accordionItems[0]?.[idx]?.isSelected) {
-                                //         const sepObj={}
-                                //         for (let i in vm.state.accordionItems[0]) {
-                                //             if (vm.state.accordionItems[0][i]) {
-                                //                 sepObj[i]=vm.state.accordionItems[0][i]
-                                //             }
-                                //         }
-                                //         return sepObj
-                                //         // return {...newObj, [dayId]:{...vm.state.accordionItems[0],[idx]:false}}
-                                //     }
-                                //     return newObj
-                                // })
+                                vm.props.setState(prev=> {
+                                    let newObj={...prev, [dayId]:vm.state.accordionItems[0]}
+                                    let renderObj={...newObj, [dayId]:{...vm.state.accordionItems[0]}}
+                                    for (let key in vm.state.accordionItems[0]) {
+                                        for (let innerKey in vm.state.accordionItems[0][key]) {
+                                            if (innerKey=="isSelected" && vm.state.accordionItems[0][key][innerKey]) {
+                                                renderObj={...renderObj,[dayId]:{...renderObj[dayId],[key]:vm.state.accordionItems[0][key]}}
+                                            }
+                                            else {
+                                                renderObj={...renderObj,[dayId]:{...renderObj[dayId],[key]:false}}
+                                            }
+                                        }
+                                    }
+                                    return renderObj
+                                })
                             }} />
                               <div className={cls.plus} onClick={callbacks.onDelItem.bind(this, id)}>
                                 <CloseCircleOutlined />
